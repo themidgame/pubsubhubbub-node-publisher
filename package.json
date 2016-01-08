@@ -17,9 +17,21 @@
     "PuSH"
   ],
   "author": "themidgame, INC.",
-  "license": "ISC",
+  "contributors": [
+    {
+      "name": "Andres Diaz",
+      "url": "https://github.com/afdiaz"
+    }
+  ],
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/themidgame/pubsubhubbub-node-publisher/issues"
   },
-  "homepage": "https://github.com/themidgame/pubsubhubbub-node-publisher#readme"
+  "homepage": "https://github.com/themidgame/pubsubhubbub-node-publisher#readme",
+  "devDependencies": {
+    "chai": "*",
+    "jshint": "^2.8.0",
+    "mocha": "^2.3.4",
+    "nock": "^3.4.0"
+  }
 }
