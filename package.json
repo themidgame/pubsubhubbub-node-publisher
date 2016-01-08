@@ -1,0 +1,25 @@
+{
+  "name": "pubsubhubbub-node-publisher",
+  "version": "0.0.1",
+  "description": "A Pubsubhubbub (PuSH) publisher for node js.",
+  "main": "./lib/youtube.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/themidgame/pubsubhubbub-node-publisher.git"
+  },
+  "keywords": [
+    "Pubsubhubbub",
+    "publisher",
+    "node",
+    "PuSH"
+  ],
+  "author": "themidgame, INC.",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/themidgame/pubsubhubbub-node-publisher/issues"
+  },
+  "homepage": "https://github.com/themidgame/pubsubhubbub-node-publisher#readme"
+}
