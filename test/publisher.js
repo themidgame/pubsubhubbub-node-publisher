@@ -6,9 +6,8 @@ var mocha = require('mocha'),
 
 
 describe('Publisher', function(){
-  var hubUrl = 'http://pubsubhubbub.appspot.com/',
-  publisher = new Publisher({'hubUrl': hubUrl}),
-  topicUrl = 'http://www.example.com';
+  var hubURL = 'http://pubsubhubbub.appspot.com/',
+  publisher = new Publisher({'hubURL': hubURL});
 
   describe('constructor', function(){
     it('should validate the hub url is provided', function(){
@@ -19,40 +18,56 @@ describe('Publisher', function(){
 
     it('should validate the provided hub url is valid', function(){
       assert.throws(function(){
-         new Publisher({'hubUrl':'whatever'});
+         new Publisher({'hubURL':'whatever'});
       }, Error, 'Please specify a valid hub url');
       assert.throws(function(){
-         new Publisher({'hubUrl':'hxttp://whatever.com'});
+         new Publisher({'hubURL':'hxttp://whatever.com'});
       }, Error, 'Please specify a valid hub url');
       assert.doesNotThrow(function(){
-         new Publisher({'hubUrl':'http://whatever.com'});
+         new Publisher({'hubURL':'http://whatever.com'});
       });
       assert.doesNotThrow(function(){
-         new Publisher({'hubUrl':'https://whatever.com'});
+         new Publisher({'hubURL':'https://whatever.com'});
       });
     });
   });
 
   describe('when publishing', function(){
+    var hubURL = 'https://pubsubhubbub.appspot.com/',
+    publisher = new Publisher({'hubURL': hubURL});
 
     it('should validate that it has a topic url', function(){
-      assert.equal(false,true, 'The topic url should be validated');
-    });
-
-    it('should validate that the topic url is valid', function(){
-      assert.equal(false,true, 'The topic url should be validated');
+      assert.throws(function(){
+        return publisher.publishUpdate();
+      }, Error, 'Please specify at least one topic url.');
     });
 
     it('should accept one topic url', function(){
-      assert.equal(false,true, 'Should accept one topic url');
+      assert.doesNotThrow(function(){
+        return publisher.publishUpdate('http://www.example.com');
+      });
     });
-
+/*
     it('should accept multiple topic urls', function(){
-      assert.equal(false,true, 'Should accept an array of topic urls');
+      assert.doesNotThrow(function(){
+        return publisher.publishUpdate('http://www.example.com,https://www.example.com');
+      });
+    });*/
+
+    it('should validate that each topic url is valid', function(){
+      assert.throws(function(){
+        return publisher.publishUpdate('http://www.example.com,htp://www.example.com,https://www.example.com');
+      }, Error, 'Please fix the URL: htp://www.example.com');
     });
 
-    it('should be able to publish to a hub', function(){
-      assert.equal(publisher.publishUpdate(topicUrl), true, 'the publisher should be able to publish a topic.');
+    it('should be able to publish to a hub one topic', function(){
+      return publisher.publishUpdate('http://www.example.com?myid=andres').then(function(response){
+        console.log(response);
+        //assert.equal(false,true);
+      }).catch(function(e){
+        console.log(e);
+      });
+
     });
 
     it('should allow the clients to see the last response', function(){
