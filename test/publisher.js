@@ -44,26 +44,40 @@ describe('Publisher', function(){
 
     it('should accept one topic url', function(){
       assert.doesNotThrow(function(){
-        return publisher.publishUpdate('http://www.example.com');
+        return publisher.publishUpdate('https://www.youtube.com/xml/feeds/videos.xml?channel_id=UCCjyq_K1Xwfg8Lndy7lKMpA');
       });
     });
-/*
+
     it('should accept multiple topic urls', function(){
+      nock('https://pubsubhubbub.appspot.com')
+          .post('/',{
+            'hub.mode': 'publish',
+            'hub.url[0]': 'http://www.example.com',
+            'hub.url[1]': 'https://www.example.com',
+          })
+          .reply(204,{});
       assert.doesNotThrow(function(){
-        return publisher.publishUpdate('http://www.example.com,https://www.example.com');
+        return publisher.publishUpdate('http://www.example.com,https://www.example.com').then(function(response){
+          assert.equal(response.statusCode,204);
+        });
       });
-    });*/
+    });
 
     it('should validate that each topic url is valid', function(){
       assert.throws(function(){
-        return publisher.publishUpdate('http://www.example.com,htp://www.example.com,https://www.example.com');
+        return publisher.publishUpdate('https://www.youtube.com/xml/feeds/videos.xml?channel_id=UCCjyq_K1Xwfg8Lndy7lKMpA,htp://www.example.com,http://www.youtube.com/xml/feeds/videos.xml?channel_id=UCCjyq_K1Xwfg8Lndy7lKMpA');
       }, Error, 'Please fix the URL: htp://www.example.com');
     });
 
-    it('should be able to publish to a hub one topic', function(){
-      return publisher.publishUpdate('http://www.example.com?myid=andres').then(function(response){
-        console.log(response);
-        //assert.equal(false,true);
+    it('should be able to publish one topic to a hub', function(){
+      nock('https://pubsubhubbub.appspot.com')
+          .post('/',{
+            'hub.mode': 'publish',
+            'hub.url': 'https://www.youtube.com/xml/feeds/videos.xml?channel_id=UCCjyq_K1Xwfg8Lndy7lKMpA'
+          })
+          .reply(204,{});
+      return publisher.publishUpdate('https://www.youtube.com/xml/feeds/videos.xml?channel_id=UCCjyq_K1Xwfg8Lndy7lKMpA').then(function(response){
+        assert.equal(response.statusCode, 204, 'the server should have replied with 204');
       }).catch(function(e){
         console.log(e);
       });
@@ -71,7 +85,7 @@ describe('Publisher', function(){
     });
 
     it('should allow the clients to see the last response', function(){
-      assert.equal(publisher.getLastResponse(), 'response', 'the expected last response is not available in the publisher.');
+      assert.equal(publisher.getLastResponse().statusCode, 204, 'the expected last response is not available in the publisher.');
     });
 
   });
