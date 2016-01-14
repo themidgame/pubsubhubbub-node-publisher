@@ -2,7 +2,7 @@
   "name": "pubsubhubbub-node-publisher",
   "version": "0.0.1",
   "description": "A Pubsubhubbub (PuSH) publisher for node js.",
-  "main": "./lib/youtube.js",
+  "main": "./lib/publisher.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
