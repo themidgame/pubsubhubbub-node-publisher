@@ -1,6 +1,6 @@
 {
   "name": "pubsubhubbub-node-publisher",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A Pubsubhubbub (PuSH) publisher for node js.",
   "main": "./lib/publisher.js",
   "scripts": {
