@@ -1,0 +1,44 @@
+{
+  "name": "pubsubhubbub-node-publisher",
+  "version": "0.0.1",
+  "description": "A Pubsubhubbub (PuSH) publisher for node js.",
+  "main": "./lib/youtube.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/themidgame/pubsubhubbub-node-publisher.git"
+  },
+  "keywords": [
+    "Pubsubhubbub",
+    "publisher",
+    "node",
+    "PuSH"
+  ],
+  "author": "themidgame, INC.",
+  "contributors": [
+    {
+      "name": "Andres Diaz",
+      "url": "https://github.com/afdiaz"
+    }
+  ],
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/themidgame/pubsubhubbub-node-publisher/issues"
+  },
+  "homepage": "https://github.com/themidgame/pubsubhubbub-node-publisher#readme",
+  "devDependencies": {
+    "chai": "*",
+    "jshint": "^2.8.0",
+    "mocha": "^2.3.4",
+    "nock": "^3.4.0"
+  },
+  "dependencies": {
+    "bluebird": "^3.1.1",
+    "continuation-local-storage": "^3.1.4",
+    "request-promise": "^1.0.2",
+    "underscore": "^1.8.3",
+    "validator": "^4.5.0"
+  }
+}
