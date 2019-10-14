@@ -14,7 +14,7 @@ A simple example pushing an update to `alert-hub`
 ```javascript
 const HubbubPublisher = require("pubsubhubbub-node-publisher");
 
-const publisher = HubbubPublisher({
+const publisher = new HubbubPublisher({
     hubURL: "https://alert-hub.appspot.com/"
 });
 
